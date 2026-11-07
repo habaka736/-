@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<style>
+body {
+font-family: Arial, sans-serif;
+background-color: #17212b;
+color: white;
+text-align: center;
+padding: 20px;
+}
+h1 {
+color: #2ea6ff;
+}
+button {
+background-color: #2ea6ff;
+color: white;
+border: none;
+padding: 15px 30px;
+font-size: 16px;
+border-radius: 10px;
+margin-top: 20px;
+}
+</style>
+</head>
+<body>
+<h1>Ассаламу алейкум!</h1>
+<p>Это мое первое Mini App.</p>
+<p id="user-name">Загрузка имени...</p>
+<button id="my-btn">Нажми меня</button>
+<script>
+let tg = window.Telegram.WebApp;
+tg.expand();
+let userName = tg.initDataUnsafe?.user?.first_name || "друг";
+document.getElementById("user-name").innerText = "Привет, " + userName + "!";
+document.getElementById("my-btn").addEventListener("click", function() {
+tg.showAlert("Ты нажал на кнопку! Ура!");
+});
+</script>
+</body>
+</html>
