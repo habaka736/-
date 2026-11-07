@@ -6,38 +6,78 @@
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 <style>
 body {
-font-family: Arial, sans-serif;
-background-color: #17212b;
-color: white;
+font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+background: linear-gradient(135deg, #FFBF00 0%, #FFD700 100%);
+color: #FFF4E0;
 text-align: center;
+margin: 0;
 padding: 20px;
+min-height: 100vh;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+}
+.card {
+background: rgba(139, 69, 19, 0.15);
+border: 1px solid rgba(255, 244, 224, 0.3);
+border-radius: 24px;
+padding: 40px 20px;
+width: 90%;
+max-width: 400px;
+box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+backdrop-filter: blur(8px);
 }
 h1 {
-color: #2ea6ff;
+font-size: 28px;
+margin-bottom: 10px;
+color: #FFF4E0;
+text-shadow: 1px 1px 3px rgba(139, 69, 19, 0.5);
+}
+p {
+font-size: 16px;
+color: #FFE4B5;
+margin-bottom: 30px;
+}
+#user-name {
+font-size: 22px;
+font-weight: bold;
+color: #FFF4E0;
 }
 button {
-background-color: #2ea6ff;
-color: white;
+background: #8B6508;
+color: #FFF4E0;
+font-weight: bold;
+font-size: 18px;
 border: none;
-padding: 15px 30px;
-font-size: 16px;
-border-radius: 10px;
-margin-top: 20px;
+padding: 16px;
+width: 100%;
+border-radius: 14px;
+box-shadow: 0 6px 20px rgba(139, 101, 8, 0.4);
+cursor: pointer;
+transition: transform 0.2s;
+}
+button:active {
+transform: scale(0.96);
 }
 </style>
 </head>
 <body>
+<div class="card">
 <h1>Ассаламу алейкум!</h1>
-<p>Это мое первое Mini App.</p>
-<p id="user-name">Загрузка имени...</p>
-<button id="my-btn">Нажми меня</button>
+<p>Добро пожаловать в</p>
+<div id="user-name">Загрузка...</div>
+<br>
+<button id="my-btn">Открыть меню</button>
+</div>
 <script>
 let tg = window.Telegram.WebApp;
 tg.expand();
-let userName = tg.initDataUnsafe?.user?.first_name || "друг";
-document.getElementById("user-name").innerText = "Привет, " + userName + "!";
+let userName = tg.initDataUnsafe?.user?.first_name || "гость";
+document.getElementById("user-name").innerText = userName;
 document.getElementById("my-btn").addEventListener("click", function() {
-tg.showAlert("Ты нажал на кнопку! Ура!");
+tg.HapticFeedback.impactOccurred("medium");
+tg.showAlert("Вы в главном меню Золота пустыни!");
 });
 </script>
 </body>
