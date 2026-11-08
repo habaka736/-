@@ -1,84 +1,76 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="ru">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<script src="https://telegram.org/js/telegram-web-app.js"></script>
-<style>
-body {
-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-background: linear-gradient(135deg, #FFBF00 0%, #FFD700 100%);
-color: #FFF4E0;
-text-align: center;
-margin: 0;
-padding: 20px;
-min-height: 100vh;
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
-}
-.card {
-background: rgba(139, 69, 19, 0.15);
-border: 1px solid rgba(255, 244, 224, 0.3);
-border-radius: 24px;
-padding: 40px 20px;
-width: 90%;
-max-width: 400px;
-box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-backdrop-filter: blur(8px);
-}
-h1 {
-font-size: 28px;
-margin-bottom: 10px;
-color: #FFF4E0;
-text-shadow: 1px 1px 3px rgba(139, 69, 19, 0.5);
-}
-p {
-font-size: 16px;
-color: #FFE4B5;
-margin-bottom: 30px;
-}
-#user-name {
-font-size: 22px;
-font-weight: bold;
-color: #FFF4E0;
-}
-button {
-background: #8B6508;
-color: #FFF4E0;
-font-weight: bold;
-font-size: 18px;
-border: none;
-padding: 16px;
-width: 100%;
-border-radius: 14px;
-box-shadow: 0 6px 20px rgba(139, 101, 8, 0.4);
-cursor: pointer;
-transition: transform 0.2s;
-}
-button:active {
-transform: scale(0.96);
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#00251b">
+  <title>ISLAM — путь мира и веры</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <style>
+    :root { color-scheme: dark; --green:#00251b; --gold:#d9ad59; }
+    * { box-sizing: border-box; }
+    html, body { margin:0; min-height:100%; background:#001a13; }
+    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color:#f7edcf; }
+    .page { width:100%; max-width:560px; margin:0 auto; padding:0; }
+    .art { position:relative; width:100%; line-height:0; overflow:hidden; background:var(--green); }
+    .art img { display:block; width:100%; height:auto; }
+    .hotspot {
+      position:absolute; display:block; border:0; padding:0; margin:0;
+      background:rgba(255,255,255,0); border-radius:22px; cursor:pointer;
+      -webkit-tap-highlight-color: transparent; touch-action: manipulation;
+    }
+    .hotspot:focus-visible { outline:2px solid #ffe0a0; outline-offset:2px; background:rgba(255,220,150,.12); }
+    .hotspot:active { background:rgba(255,220,150,.14); }
+    /* Transparent touch areas precisely aligned over the four section cards and main CTA. */
+    .names { left:4.7%; top:63.1%; width:43.4%; height:6.0%; }
+    .prayer { left:49.8%; top:63.1%; width:43.4%; height:6.0%; }
+    .ramadan { left:4.7%; top:70.3%; width:43.4%; height:6.0%; }
+    .dua { left:49.8%; top:70.3%; width:43.4%; height:6.0%; }
+    .start { left:4.7%; top:78.0%; width:90.6%; height:6.0%; border-radius:40px; }
+    .hint { margin:0; padding:12px 16px calc(12px + env(safe-area-inset-bottom)); text-align:center; color:#c9b98f; font-size:12px; background:#001a13; }
+    @media (min-width:561px) {
+      body { padding:18px 0; }
+      .page { border:1px solid rgba(220,177,91,.35); box-shadow:0 12px 50px #0009; }
+      .hint { display:none; }
+    }
+    @media (prefers-reduced-motion:no-preference) {
+      .hotspot { transition:background .15s ease; }
+    }
+  </style>
 </head>
 <body>
-<div class="card">
-<h1>Ассаламу алейкум!</h1>
-<p>Добро пожаловать в</p>
-<div id="user-name">Загрузка...</div>
-<br>
-<button id="my-btn">Открыть меню</button>
-</div>
-<script>
-let tg = window.Telegram.WebApp;
-tg.expand();
-let userName = tg.initDataUnsafe?.user?.first_name || "гость";
-document.getElementById("user-name").innerText = userName;
-document.getElementById("my-btn").addEventListener("click", function() {
-tg.HapticFeedback.impactOccurred("medium");
-tg.showAlert("Вы в главном меню Золота пустыни!");
-});
-</script>
+  <main class="page" aria-label="Главная страница исламского приложения">
+    <div class="art">
+      <img src="islam-home.png" alt="ISLAM — путь мира и веры. Ислам — путь к миру. Аят для размышления и разделы приложения." width="1025" height="1536">
+      <button class="hotspot names" type="button" aria-label="Открыть раздел 99 имён Аллаха" data-section="99 имён Аллаха"></button>
+      <button class="hotspot prayer" type="button" aria-label="Открыть время намаза" data-section="Время намаза"></button>
+      <button class="hotspot ramadan" type="button" aria-label="Открыть раздел Пост в Рамадан" data-section="Пост в Рамадан"></button>
+      <button class="hotspot dua" type="button" aria-label="Открыть раздел Дуа и зикр" data-section="Дуа и зикр"></button>
+      <button class="hotspot start" type="button" aria-label="Начать изучение" data-section="Начать изучение"></button>
+    </div>
+    <p class="hint">Нажмите на карточку раздела, чтобы открыть его.</p>
+  </main>
+  <script>
+    (() => {
+      const tg = window.Telegram?.WebApp;
+      if (tg) {
+        tg.ready();
+        tg.expand();
+        tg.setHeaderColor?.('#00251b');
+        tg.setBackgroundColor?.('#001a13');
+      }
+      document.querySelectorAll('[data-section]').forEach((button) => {
+        button.addEventListener('click', () => {
+          const section = button.dataset.section;
+          tg?.HapticFeedback?.impactOccurred?.('light');
+          const message = section === 'Начать изучение'
+            ? 'Добро пожаловать! Выберите один из разделов на главной странице.'
+            : `Раздел «${section}» выбран. Его содержимое можно подключить следующим этапом.`;
+          if (tg?.showAlert) tg.showAlert(message);
+          else window.alert(message);
+        });
+      });
+    })();
+  </script>
 </body>
 </html>
